@@ -17,6 +17,13 @@ public class Delivery {
 
     @PostPersist
     public void onPostPersist(){
+
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Shipped shipped = new Shipped();
         BeanUtils.copyProperties(this, shipped);
         shipped.publishAfterCommit();
